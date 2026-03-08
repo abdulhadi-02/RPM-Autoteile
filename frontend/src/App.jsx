@@ -1,38 +1,54 @@
-import { useState , useEffect} from 'react'
-import './App.css'
-import axios from "axios"
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import OrdersPage from "./pages/OrdersPage";
+import ProfilePage from "./pages/ProfilePage";
+import CartPage from "./pages/CartPage";
 
 function App() {
- 
-  const [message, setMessage] = useState("");
-const [loading, setLoading] = useState(true);
-
-useEffect(() => {
-  axios.get("http://localhost:5000/api/message")
-  .then(Response => {
-setMessage(Response.data.message);
-  setLoading(false);
-  })
-  .catch(error => {
-    console.log("There was an erroe fetching the message!", error);
-    setMessage("Failed to load message from backend");
-    setLoading(false);
-  });
-}, []);
-
   return (
-    <>
-     <div style={{padding:"20px"}}>
-      <h1>Simple Express + React vite App</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <p>{message}</p>
-      )}
-     </div>
-    </>
-  )
+    <div>
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+
+        <Route
+          path="/orders"
+          element={
+            <PrivateRoute>
+              <OrdersPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <CartPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

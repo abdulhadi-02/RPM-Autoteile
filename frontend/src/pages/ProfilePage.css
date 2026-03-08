@@ -1,0 +1,16 @@
+.profile-page{
+  padding:40px;
+  color:white;
+}
+
+.profile-page h1{
+  margin-bottom:25px;
+}
+
+.profile-info{
+  border:1px solid #333;
+  padding:20px;
+  border-radius:8px;
+  max-width:400px;
+  background:#101010;
+}

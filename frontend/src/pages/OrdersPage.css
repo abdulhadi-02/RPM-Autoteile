@@ -1,0 +1,24 @@
+.orders-page{
+  padding:40px;
+  color:white;
+}
+
+.orders-page h1{
+  margin-bottom:25px;
+}
+
+.orders-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.orders-table th, .orders-table td{
+  border:1px solid #333;
+  padding:12px;
+  text-align:left;
+}
+
+.orders-table th{
+  background:#111;
+  color:white;
+}
